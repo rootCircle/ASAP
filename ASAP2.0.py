@@ -2,11 +2,11 @@
 """
 Created on Sun May 17 10:12:06 2020
 
-@author: Microsoftlabs
+@author: rootCircle
 """
 
 # =============================================================================
-# Author@Microsoftlabs
+# Author@rootCircle
 # Name of the Software: ASAP:Your school assistant
 # Version=1.0.0.1
 # Features: Login,Signup, Add/Modify/Delete Student's Profile, Make/Show/Update
