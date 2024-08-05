@@ -13,7 +13,6 @@ Created on Sun May 17 10:12:06 2020
 #           Result, Search Student,Images,Modify profile for admin
 # =============================================================================
 
-
 try:
     import tkinter as tk
 except ImportError:
@@ -30,7 +29,6 @@ from tkinter import (
 import sqlite3
 from time import ctime, time
 from PIL import Image, ImageTk
-
 
 
 class ASAPtools:
@@ -58,7 +56,6 @@ class ASAPtools:
                 sqliteConnection.close()
 
     def image_Show(self, Dir, irow, icolumn, width, height):
-
         Photo = Image.open(Dir)
         Photo = Photo.resize((width, height))
         render = ImageTk.PhotoImage(Photo)
@@ -239,7 +236,7 @@ class PageOne_Login(tk.Frame):
         ASAPtools.sqlite3_run(self, def_Query)
         sqlite_query = "Select id,Username,Password,Pin from ADTEA"
         record = ASAPtools.sqlite3_run(self, sqlite_query)[0]
-        for (aid, usern, pas, pin) in record:
+        for aid, usern, pas, pin in record:
             if cuser == usern and cpass == pas:
                 Query = "Select Name,Username,PIN from ADTEA Where id =" + str(aid)
                 data = ASAPtools.sqlite3_run(self, Query)
@@ -288,7 +285,7 @@ class PageTwo_SignupAdmin(tk.Frame):
         gender = StringVar(self, "M")
         gen = {"Male": "M", "Female": "F", "Not specified": "N"}
         i = 2
-        for (text, value) in gen.items():
+        for text, value in gen.items():
             Radiobutton(
                 self,
                 text=text,
@@ -346,7 +343,7 @@ class PageTwo_SignupAdmin(tk.Frame):
         ).grid(row=9, column=3, pady=3)
 
     def RegisterAdmin(
-            self, master, name, age, gender, Username, Password, Repassword, PIN
+        self, master, name, age, gender, Username, Password, Repassword, PIN
     ):
         if Password == Repassword:
             def_Query = "CREATE TABLE IF NOT EXISTS ADTEA(id INTEGER PRIMARY KEY,Name TEXT NOT NULL,Age INT NOT NULL,Gender CHAR(1),Username TEXT NOT NULL  UNIQUE, Password TEXT Not Null,PIN INTEGER NOT NULL);"
@@ -724,7 +721,7 @@ class PageFour_SignupStudent(tk.Frame):
         socstatus = StringVar(self, "GEN")
         SOC = {"General": "GEN", "OBC": "OBC", "SC": "SC", "ST": "ST"}
         i = 2
-        for (text, value) in SOC.items():
+        for text, value in SOC.items():
             Radiobutton(
                 self,
                 text=text,
@@ -741,7 +738,7 @@ class PageFour_SignupStudent(tk.Frame):
         gender = StringVar(self, "M")
         GEN = {"Male": "M", "Female": "F", "Not specified": "N"}
         i = 2
-        for (text, value) in GEN.items():
+        for text, value in GEN.items():
             Radiobutton(
                 self,
                 text=text,
@@ -765,7 +762,7 @@ class PageFour_SignupStudent(tk.Frame):
             "Sikh": "Sikh",
         }
         i = 2
-        for (text, value) in REL.items():
+        for text, value in REL.items():
             Radiobutton(
                 self,
                 text=text,
@@ -930,7 +927,7 @@ class Page5_SearchStudents(tk.Frame):
             "Religion": "Religion",
         }
         i = 1
-        for (text, value) in options.items():
+        for text, value in options.items():
             Radiobutton(
                 self,
                 text=text,
@@ -1047,10 +1044,7 @@ class Page5_SearchStudents(tk.Frame):
             "Religion",
         )
         listBox = ttk.Treeview(
-            screen,
-            selectmode="extended",
-            columns=column,
-            show="headings"
+            screen, selectmode="extended", columns=column, show="headings"
         )
 
         for i in range(0, len(column)):
@@ -1177,7 +1171,7 @@ class Page7_ModifyProfileAdmin(tk.Frame):
         gender = StringVar(self, data[2])
         gen = {"Male": "M", "Female": "F", "Not specified": "N"}
         i = 2
-        for (text, value) in gen.items():
+        for text, value in gen.items():
             Radiobutton(
                 self,
                 text=text,
@@ -1376,7 +1370,7 @@ class Page9_ModifyProfileStudent(tk.Frame):
                 socstatus = StringVar(self, data[6])
                 SOC = {"General": "GEN", "OBC": "OBC", "SC": "SC", "ST": "ST"}
                 i = 2
-                for (text, value) in SOC.items():
+                for text, value in SOC.items():
                     Radiobutton(
                         self,
                         text=text,
@@ -1395,7 +1389,7 @@ class Page9_ModifyProfileStudent(tk.Frame):
                 gender = StringVar(self, data[2])
                 GEN = {"Male": "M", "Female": "F", "Not specified": "N"}
                 i = 2
-                for (text, value) in GEN.items():
+                for text, value in GEN.items():
                     Radiobutton(
                         self,
                         text=text,
@@ -1424,7 +1418,7 @@ class Page9_ModifyProfileStudent(tk.Frame):
                     self.other_Religion()
                     otherReligionInput.insert(0, data[7])
                 i = 2
-                for (text, value) in REL.items():
+                for text, value in REL.items():
                     Radiobutton(
                         self,
                         text=text,
@@ -1532,7 +1526,6 @@ class Page9_ModifyProfileStudent(tk.Frame):
                 and ASAPtools.inLimit(self, 0, 150, age)
                 and ASAPtools.inLimit(self, -2, 12, Class)
             ):
-
                 sqlite_query = (
                     "Update students set Name='"
                     + name
@@ -1760,7 +1753,6 @@ class Page11_MakeResult(tk.Frame):
         self.makeWidgets(master)
 
     def makeWidgets(self, master):
-
         tk.Button(
             self,
             text="<Back",
@@ -1880,7 +1872,6 @@ class Page11_MakeResult(tk.Frame):
         ).grid(row=11, column=3, pady=10, padx=3)
 
     def RegisterResult(self, master, ExamID, Sid, math, comp, eng, phy, che, PINraw):
-
         ExamID = "RESULT" + ASAPtools.removeSpace(self, ExamID)
         def_Query = (
             "CREATE TABLE IF NOT EXISTS "
